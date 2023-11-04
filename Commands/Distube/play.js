@@ -4,7 +4,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("play")
     .setDescription("Add a song")
-    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator) //only allowed for admin users
+    // .setDefaultMemberPermissions(PermissionFlagsBits.Administrator) //only allowed for admin users
     .addStringOption(option => option.setName('songname').setDescription("Song to be played").setRequired(true)),
     async execute(interaction, client) {
 
