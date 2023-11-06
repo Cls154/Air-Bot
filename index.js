@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require("discord.js");
-const { DisTube } = require("distube");
+const { DisTube, Song, Queue } = require("distube");
 
 const { loadEvents } = require('./Handlers/eventHandler');
 const { loadCommands } = require('./Handlers/commandHandler');

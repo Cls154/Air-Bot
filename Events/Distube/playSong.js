@@ -1,9 +1,12 @@
 const { CommandInteraction } = require("discord.js");
+const { CreateNowPlayingEmbed } = require("../../Shared/Embeds/NowPlayingEmbed")
 
 module.exports = {
   name: "playSong",
   distube: true,
   execute(queue, song, client) {
-    queue.textChannel.send(`Added ${song.name}`);
+    const NowPlaying = CreateNowPlayingEmbed(queue, song, client)
+    queue.textChannel.send({ embeds: [NowPlaying]});
+
   }
 }
