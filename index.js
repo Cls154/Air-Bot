@@ -1,8 +1,10 @@
-const { Client, GatewayIntentBits, Partials, Collection } = require("discord.js");
-const { DisTube, Song, Queue } = require("distube");
+const { Client, GatewayIntentBits, Partials, Collection, ActivityType } = require("discord.js");
+const { DisTube } = require("distube");
 
 const { loadEvents } = require('./Handlers/eventHandler');
 const { loadCommands } = require('./Handlers/commandHandler');
+const { SpotifyPlugin } = require("@distube/spotify");
+const { SoundCloudPlugin } = require("@distube/soundcloud");
 
 require('dotenv/config');
 
@@ -19,6 +21,12 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
+  plugins: [
+    new SpotifyPlugin({
+      emitEventsAfterFetching: true
+    }),
+    new SoundCloudPlugin(),
+  ]
 })
 
 client.commands = new Collection();
@@ -26,4 +34,11 @@ client.commands = new Collection();
 client.login(process.env.TOKEN).then(() => {
   loadEvents(client);
   loadCommands(client);
+  client.user.setPresence({
+    activities: [{
+      type: ActivityType.Custom,
+      name: "🥰 Under construction",
+    }],
+    status: "dnd"
+  })
 });

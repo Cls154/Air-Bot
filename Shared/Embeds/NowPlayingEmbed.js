@@ -4,10 +4,9 @@ const config = require("../../config.js");
 function CreateNowPlayingEmbed(queue, song, client) {
   return new EmbedBuilder()
       .setColor(0xFFFF00)
-      .setTitle(song.name)
-      .setURL(song.url)
       .setAuthor({ name: "Air", iconURL: config.logo })
-      .setDescription("### Is now playing 🎶")
+      .setTitle("🎶 Playing 🎶")
+      .setDescription(`### [${song.name}](${song.url})`)
       .setThumbnail(song.thumbnail)
       .addFields(
         { name: "Requested by", value: `${song.user}`, inline: true },
